@@ -6,7 +6,6 @@ export const GET: RequestHandler = async () => {
     const { data, error } = await supabase.from('student').select('*');
 
     if (error) {
-      console.error('Supabase fetch error:', error.message);
       return new Response(JSON.stringify({ error: error.message }), { status: 500 });
     }
 
@@ -14,7 +13,6 @@ export const GET: RequestHandler = async () => {
       headers: { 'Content-Type': 'application/json' }
     });
   } catch (err) {
-    console.error('Unexpected error:', err);
     return new Response(JSON.stringify({ error: 'Unexpected error' }), { status: 500 });
   }
 };
